@@ -1,0 +1,134 @@
+<div class="container mx-auto my-5 p-5" style="width: 60%; background-color: rgb(255, 243, 226); border-radius: 20px;">
+    <form [formGroup]="register" (ngSubmit)="submitRegister()" style="width: 90%;"  class="mx-auto">
+
+        <div class="mb-3">
+            <label for="exampleInputName" class="form-label ">Name</label>
+            <input 
+            type="text" 
+            class="form-control mx-auto" 
+            aria-describedby="nameHelp"
+            formControlName="name"
+            
+            >
+            @if(register.controls['name'].invalid && register.controls['name'].touched){
+              <div id="nameHelp" class="form-text text-danger">
+                  @if(register.controls['name'].errors?.['required']){
+                      <span>Name is required</span>
+                  }
+                
+              </div>
+      
+            }
+            
+          </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label ">Email address</label>
+          <input 
+          type="text" 
+          class="form-control mx-auto" 
+          id="exampleInputEmail1" 
+          aria-describedby="emailHelp"
+          formControlName="email"
+          pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+          
+          >
+          @if(register.controls['email'].invalid && register.controls['email'].touched){
+            <div id="emailHelp" class="form-text text-danger">
+                @if(register.controls['email'].errors?.['required']){
+                    <span>E-mail is required</span>
+                }
+                @else if(register.controls['email'].errors?.['pattern']){
+                    <span>Please enter a valid e-mail</span>
+    
+                }
+                
+            </div>
+    
+          }
+          
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputUsername" class="form-label ">UserName</label>
+            <input 
+            type="username" 
+            class="form-control mx-auto" 
+            id="exampleInputUsername" 
+            aria-describedby="usernameHelp"
+            formControlName="username"
+            pattern="^\S+$"
+            
+            >
+            @if(register.controls['username'].invalid && register.controls['username'].touched){
+              <div id="emailHelp" class="form-text text-danger">
+                  @if(register.controls['username'].errors?.['required']){
+                      <span>UserName is required</span>
+                  }
+                  @else if(register.controls['username'].errors?.['pattern']){
+                      <span>Please enter a valid username that contains no spaces</span>
+      
+                  }
+                  
+              </div>
+      
+            }
+            
+          </div>
+
+      <!-- <div formGroupName="passwords"> -->
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input 
+          formControlName="password"
+          type="password" 
+          class="form-control" 
+          id="exampleInputPassword1"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+          
+          >
+          @if(register.controls['password'].invalid && register.controls['password'].touched){
+            <div id="passwordHelp" class="form-text text-danger mx-auto">
+                @if(register.controls['password'].errors?.['required']){
+                    <span>Please enter your password!</span>
+                }
+                @else if(register.controls['password'].errors?.['pattern']){
+                    <span>Password should be at least eight characters long, has at least one uppercase letter, one lowercase letter and one number</span>
+    
+                }
+                
+            </div>
+    
+          }
+        </div>
+
+        <!-- <div class="mb-3">
+            <label for="exampleInputPassword2" class="form-label">Password</label>
+            <input 
+            formControlName="repassword"
+            type="password" 
+            class="form-control" 
+            id="exampleInputPassword2"
+            ref="exampleInputPassword1"
+            
+            
+            >
+            @if(register.controls['passwords'].get('repassword')?.invalid && register.controls['passwords'].get('repassword')?.touched){
+              <div id="password2Help" class="form-text text-danger mx-auto">
+                  @if(register.controls['passwords'].get('repassword')?.errors?.['required']){
+                      <span>Please enter your password!</span>
+                  }
+                  @else if(register.controls['passwords'].get('repassword')?.invalid){
+                      <span>Password and reType-password should match</span>
+      
+                  }
+                  
+              </div>
+      
+            }
+          </div> -->
+        <!-- </div> -->
+        
+        <button type="submit" class="btn btn-outline-dark " style="margin-left: 40%;" [disabled]="register.invalid">Log in</button>
+        
+      </form>
+</div>

@@ -1,0 +1,37 @@
+<div class="card" style="width: 30; height:fit-content">
+    <img class="card-img-top" src={{product.images[0]}} alt="Card image cap" height="400px">
+    <div class="card-body">
+      <a  class="" (click)="showDetails(product.id)">
+        <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description}}</p>
+      <p class="card-text text-secondary">{{product.category}}</p>  
+      </a>
+
+      
+      @if(product.stock===0){
+        <p class="card-text text-danger">Out of stock</p>
+
+      }    
+      @else{
+        <p class="card-text text-success">{{product.stock}}</p>
+
+      }
+      @if(product.discountPercentage!==0){
+        <span class="badge text-bg-success">On sale</span>
+        <p class="card-text">Before:  <del>{{product.price}} </del></p> 
+        <p class="card-text">After: <strong> {{product.price | discount : product.discountPercentage}} EGP</strong></p> 
+
+        <!-- <p class="card-text">After: <strong> {{product.price-product.price*product.discountPercentage/100}}</strong></p>  -->
+         
+      }
+      @else{
+        <p class="card-text">Price: <strong> {{product.price}} EGP</strong></p> 
+
+      }
+      
+
+
+      <a  class="btn btn-outline-primary" (click)="showDetails(product.id)">Details</a>
+      <a  class="btn btn-outline-warning" >Add to cart</a>
+    </div>
+  </div>
